@@ -12,4 +12,5 @@ doc/
 .project
 .DS_Store
 .idea
+config/
 
