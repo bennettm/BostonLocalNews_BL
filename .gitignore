@@ -4,3 +4,12 @@ log/*.log
 tmp/
 .sass-cache/
 jetty
+
+#Ignore other files that are not needed.
+doc/
+*.swp
+*-
+.project
+.DS_Store
+.idea
+
