@@ -9,18 +9,6 @@ class Dataset::Pb_core < Dataset::Xml
     fields = []
     row.xpath("*").select { |x| !x.text.blank? }.each do |node|
       case node.name
-        when "CONTRIBUTOR"
-          i = 0
-          node.xpath("xmlns:DATA", "xml.namespaces").each do |contributor|
-            i += 1
-            fields <<  ['contributor_name_s', contributor.text]
-            fields <<  ['contributor_name_role_s', "#{contributor.text}\0#{node.xpath("xmlns:CONTRIBUTOR_ROLE/xmlns:DATA[#{i}]", xml.namespaces).text}"]
-          end
-        when "SUBJECT_PERSONALITIES"  
-          node.xpath("xmlns:DATA", "xml.namespaces").each do |subject|
-            fields << ['subject_personalities_s', subject.text]
-         print "passing the records"
-          end
         when "pbcoreIdentifier"
 	     a_v = "CAN_NUMBER"
              
@@ -30,6 +18,14 @@ class Dataset::Pb_core < Dataset::Xml
                fields << ["id", node.text]
              end
 
+        when "pbcoreTitle"
+              if node.values()[0] == nil 
+		fields << ["title_s", node.text]
+	      else
+		 if node.values()[0] == "Series"
+		   fields << ["collection_s", node.text]
+		 end
+              end
         else 
           fields << ["#{node.name.parameterize}_s", node.text]
       end
