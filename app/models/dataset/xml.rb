@@ -7,8 +7,12 @@ class Dataset::Xml < Dataset::Base
      xml.namespaces
   end
 
+  def rec_element 
+      "PBCoreDescriptionDocument"
+  end
+
   def records
-    xml.xpath("//xmlns:PBCoreDescriptionDocument", xmlns)
+    xml.xpath("//xmlns:" + rec_element, xmlns)
   end
 
   def process! opts = {}
@@ -30,21 +34,18 @@ class Dataset::Xml < Dataset::Base
 
   protected
   def records_xpath
-    "//xmlns:PBCoreDescriptionDocument"
+    "//xmlns:" + rec_element
   end
 
   def record_unique_id
-    #"@RECORDID"
-    "id"
+    "@RECORDID"
   end
 
   def process_record(row, solr_doc = {})
     solr_doc ||= {}
     fields = []
     row.xpath("*").select { |x| !x.text.blank? }.each do |node|
-      fields << ["#{node.name.parameterize}_t", node.text]
-
-    print "passing records ...."
+      fields << ["#{node.name.parameterize}_s", node.text]
     end
 
     fields.each do |key, value|

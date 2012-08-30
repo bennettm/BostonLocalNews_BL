@@ -1,4 +1,4 @@
-class Dataset::Bpl < Dataset::Xml
+class Dataset::Pb_core < Dataset::Xml
   def content
     super.gsub(/(<\/?[A-Za-z0-9_]+):/) { $1 } 
   end
@@ -21,6 +21,15 @@ class Dataset::Bpl < Dataset::Xml
             fields << ['subject_personalities_s', subject.text]
          print "passing the records"
           end
+        when "pbcoreIdentifier"
+	     a_v = "CAN_NUMBER"
+             
+	     if node.values()[0] == a_v
+               fields << ["#{node.name.parameterize}_s", node.text]
+             else 
+               fields << ["id", node.text]
+             end
+
         else 
           fields << ["#{node.name.parameterize}_s", node.text]
       end
