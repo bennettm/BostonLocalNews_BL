@@ -19,7 +19,16 @@ class Dataset::Bpl < Dataset::Xml
         when "SUBJECT_PERSONALITIES"  
           node.xpath("xmlns:DATA", "xml.namespaces").each do |subject|
             fields << ['subject_personalities_s', subject.text]
+         print "passing the records"
           end
+        when "pbcoreIdentifier"
+	     a_v = "CAN_NUMBER"
+             
+	     if node.values()[0] == a_v
+               fields << ["#{node.name.parameterize}_s", node.text]
+             else 
+               fields << ["id", node.text]
+             end
 
         else 
           fields << ["#{node.name.parameterize}_s", node.text]

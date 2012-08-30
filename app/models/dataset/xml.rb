@@ -3,28 +3,24 @@ class Dataset::Xml < Dataset::Base
     @xml ||= Nokogiri::XML(content)
   end
 
-  def records
-    xml.xpath("//xmlns:ROW", xmlns)
+  def xmlns
+     xml.namespaces
   end
 
-  def xmlns
-    xml.namespaces
+  def records
+    xml.xpath("//xmlns:PBCoreDescriptionDocument", xmlns)
   end
 
   def process! opts = {}
     run_callbacks(:process) do
       records.each do |row|
         solr_doc = {}
-
         run_callbacks(:process_record) do
-
-          process_record(row, solr_doc)
-
-          solr_doc[:id] ||= row.xpath(record_unique_id, xmlns).to_s
+        process_record(row, solr_doc)
+          solr_doc[:id] ||= row.xpath("//xmlns:record_unique_id", xmlns).to_s
           solr_doc[:title_sort] = solr_doc[:title_s].first unless solr_doc[:title_s].blank?
           solr_doc[:year_i] = solr_doc[:date_s].first[/19\d\d/] unless solr_doc[:date_s].blank?
           solr_doc[:xml_display_s] = row.to_s
-
         end
 
         Blacklight.solr.add solr_doc, :add_attributes => { :commitWithin => 10000 }
@@ -34,18 +30,21 @@ class Dataset::Xml < Dataset::Base
 
   protected
   def records_xpath
-    "//xmlns:ROW"
+    "//xmlns:PBCoreDescriptionDocument"
   end
 
   def record_unique_id
-    "@RECORDID"
+    #"@RECORDID"
+    "id"
   end
 
   def process_record(row, solr_doc = {})
     solr_doc ||= {}
     fields = []
     row.xpath("*").select { |x| !x.text.blank? }.each do |node|
-      fields << ["#{node.name.parameterize}_s", node.text]
+      fields << ["#{node.name.parameterize}_t", node.text]
+
+    print "passing records ...."
     end
 
     fields.each do |key, value|

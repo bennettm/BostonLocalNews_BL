@@ -1,0 +1,50 @@
+call back method
+line 2 
+<PBCoreDescriptionDocument>
+    <id>1</id>
+    <pbcoreAssetType/>
+    <pbcoreAssetDate dateType="created">2/15/1977</pbcoreAssetDate>
+    <pbcoreIdentifier source="CAN_NUMBER">1</pbcoreIdentifier>
+    <pbcoreIdentifier source="UID">V_T4G0B5DQISU2FGC</pbcoreIdentifier>
+    <pbcoreTitle>South Boston High School</pbcoreTitle>
+    <pbcoreTitle titleType="Series">Ten O'Clock News</pbcoreTitle>
+    <pbcoreDescription>Students exiting South Boston High. Snow on ground. About 25 troopers board state police bus with flashing lights. Headmaster Jerome Wynegar stands casually in front of school.</pbcoreDescription>
+    <pbcoreRelation>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier>WGBH</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="UID &amp; CAN_NUMBER" annotation="not in DB, but added to records during conversion to PBCore">(3/4 inch vUIDeotape) V_T4G0B5DQISU2FGC-1</instantiationIdentifier>
+      <instantiationPhysical>3/4 inch vUIDeotape</instantiationPhysical>
+      <instantiationDuration/>
+      <instantiationColors/>
+    </pbcoreInstantiation>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="UID &amp; CAN_NUMBER" annotation="not in DB, but added to records during conversion to PBCore">(Betacam) V_T4G0B5DQISU2FGC-1</instantiationIdentifier>
+      <instantiationPhysical>Betacam</instantiationPhysical>
+      <instantiationDuration/>
+      <instantiationColors/>
+    </pbcoreInstantiation>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="UID &amp; CAN_NUMBER" annotation="not in DB, but added to records during conversion to PBCore">(Digital Betacam) V_T4G0B5DQISU2FGC-1</instantiationIdentifier>
+      <instantiationPhysical>Digital Betacam</instantiationPhysical>
+      <instantiationDuration/>
+      <instantiationColors/>
+    </pbcoreInstantiation>
+    <pbcoreExtension>
+      <extensionWrap annotation="original database metadata">
+        <extensionElement>DATE_CREATED</extensionElement>
+        <extensionValue>1/25/2012</extensionValue>
+        <extensionAuthorityUsed>WGBH</extensionAuthorityUsed>
+      </extensionWrap>
+      <extensionWrap annotation="original database metadata">
+        <extensionElement>DATE_MODIFIED</extensionElement>
+        <extensionValue>3/19/2012</extensionValue>
+        <extensionAuthorityUsed>WGBH</extensionAuthorityUsed>
+      </extensionWrap>
+    </pbcoreExtension>
+  </PBCoreDescriptionDocument>
+line 3
+line 4
+solr_doc[:id]
+line 5
