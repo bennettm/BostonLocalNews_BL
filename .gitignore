@@ -13,4 +13,5 @@ doc/
 .DS_Store
 .idea
 config/
+./sample.xml
 
